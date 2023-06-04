@@ -184,6 +184,7 @@ X11_InitXinput2(_THIS)
 #endif
 }
 
+#if SDL_VIDEO_DRIVER_X11_XINPUT2
 /* xi2 device went away? take it out of the list. */
 static void
 xinput2_remove_device_info(SDL_VideoData *videodata, const int device_id)
@@ -205,6 +206,7 @@ xinput2_remove_device_info(SDL_VideoData *videodata, const int device_id)
         prev = devinfo;
     }
 }
+#endif
 
 #if SDL_VIDEO_DRIVER_X11_XINPUT2
 static SDL_XInput2DeviceInfo *
