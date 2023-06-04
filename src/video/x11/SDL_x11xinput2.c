@@ -184,28 +184,6 @@ X11_InitXinput2(_THIS)
 #endif
 }
 
-/* xi2 device went away? take it out of the list. */
-static void
-xinput2_remove_device_info(SDL_VideoData *videodata, const int device_id)
-{
-    SDL_XInput2DeviceInfo *prev = NULL;
-    SDL_XInput2DeviceInfo *devinfo;
-
-    for (devinfo = videodata->mouse_device_info; devinfo != NULL; devinfo = devinfo->next) {
-        if (devinfo->device_id == device_id) {
-            SDL_assert((devinfo == videodata->mouse_device_info) == (prev == NULL));
-            if (prev == NULL) {
-                videodata->mouse_device_info = devinfo->next;
-            } else {
-                prev->next = devinfo->next;
-            }
-            SDL_free(devinfo);
-            return;
-        }
-        prev = devinfo;
-    }
-}
-
 #if SDL_VIDEO_DRIVER_X11_XINPUT2
 static SDL_XInput2DeviceInfo *
 xinput2_get_device_info(SDL_VideoData *videodata, const int device_id)
